@@ -50,7 +50,7 @@ If you can, save the logs in a file and submit it with your project.
 
 Here is a sample log,
 
-![screenshot of a sample log](sample-log.png?raw=true "Title")
+![screenshot of a sample log](sample-log.jpeg?raw=true "Title")
 
 ## If you are stuck
 <details>
