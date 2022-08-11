@@ -19,6 +19,7 @@ class DB():
                 res['data'] = cursor.fetchall()
                 res['body'] = ''
             else:
+                res['body'] ='executed'
                 res['data'] = 'Query Executed'
 
             return res
@@ -48,9 +49,9 @@ class DBModel:
             attributes.append(attribute)
             values.append(value)
         table_name = class_name + '_table'
-        sql = f"INSERT INTO {table_name}({str(attributes)[1:-1]}) values ({str(values)[1:-1]})"
+        sql = f"INSERT OR REPLACE INTO {table_name}({str(attributes)[1:-1]}) values ({str(values)[1:-1]})"
         res = DB.execute(sql)
-        print(sql)
+
         # just checking if table not exist exception (can be improved):(
         if "no such table:" in res['body'] and res['status'] == 'Exception':
             self.__create_object_table()
@@ -80,8 +81,8 @@ class DBModel:
                 table_attr_query = table_attr_query + f",{attribute} integer NOT NULL"
             elif isinstance(value,float):
                 table_attr_query = table_attr_query + f",{attribute} real NOT NULL"
-        print(table_attr_query)
+
         res = DB.execute(table_attr_query+");")
-        print(res)
+
 
 
